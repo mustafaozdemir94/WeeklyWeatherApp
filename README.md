@@ -1,16 +1,42 @@
-# weatherapp
 
-A new Flutter project.
+# Weekly Weather App
 
-## Getting Started
+Haftalık Hava Durumu uygulaması free API (CollectAPI) kullanılarak BLOC mimarisine uygun anlık konumun 7 günlük hava durumunu sunan bir Flutter uygulamasıdır.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Özellikler
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Anlık konumun 7 günlük çeşitli hava durumu parametlerini sunar.
+- Bloc mimarisine uygun.
+- Görsel olarak canlı ve anlaşılır tasarım.
+
+
+-----
+
+
+# UI Görüntüleri
+
+<p align="middle"></p>
+<p align="middle">
+<img src="https://github.com/mustafaozdemir94/WeeklyWeatherApp/blob/main/assets/readme/home_screen_ui.png" width="350" height="750">
+<img src="https://github.com/mustafaozdemir94/WeeklyWeatherApp/blob/main/assets/readme/home_detail_ui.png" width="350" height="750">
+
+</p>
+
+
+
+
+
+
+
+
+## Kütüphaneler
+*  cupertino_icons: ^1.0.6
+*  geolocator: ^11.0.0
+*  dio: ^5.4.1
+*  google_fonts: ^6.2.1
+*  geocoding: ^2.2.0
+*  intl: ^0.19.0
+*  flutter_bloc: ^8.1.4
+*  flutter_spinkit: ^5.2.0
