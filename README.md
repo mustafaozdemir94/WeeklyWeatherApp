@@ -32,7 +32,6 @@ Haftalık Hava Durumu uygulaması free API (CollectAPI) kullanılarak BLOC mimar
 
 
 ## Kütüphaneler
-*  cupertino_icons: ^1.0.6
 *  geolocator: ^11.0.0
 *  dio: ^5.4.1
 *  google_fonts: ^6.2.1
