@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:weatherapp/constant/data.dart';
 import 'package:weatherapp/models/weather_model.dart';
 
 class WeatherRepository {
@@ -46,10 +47,7 @@ class WeatherRepository {
     final String city = await getLocation();
 
     final String url = "https://api.collectapi.com/weather/getWeather?data.lang=tr&data.city=$city";
-    const Map<String, dynamic> headers = {
-      "authorization": "apikey 4I8DBYg8ETDeJrEZwwa0Pl:3Ht4IwjahVH2H75O2ecEDa",
-      "content-type": "application/json"
-    };
+    Map<String, dynamic> headers = {"authorization": apiKey, "content-type": "application/json"};
 
     final dio = Dio();
 
@@ -59,11 +57,20 @@ class WeatherRepository {
       return Future.error("Bir sorun oluştu");
     }
 
-    // final Map<String, dynamic> firstWeatherData = response.data['result'];
-    // final WeatherModel weatherList = WeatherModel.fromJson(firstWeatherData);
     final List list = response.data['result'];
 
     final List<WeatherModel> weatherList = list.map((e) => WeatherModel.fromJson(e)).toList();
     return weatherList;
+  }
+
+  Future<WeatherModel> getWeatherDataByIndex(int index) async {
+    final List<WeatherModel> weatherList = await getWeatherData(); // API'den tüm hava durumu verilerini al
+
+    if (index >= 0 && index < weatherList.length) {
+      // İstenen index mevcut mu kontrol et
+      return weatherList[index]; // İstenen index'e sahip hava durumu verisini döndür
+    } else {
+      throw Exception('Geçersiz index'); // Geçersiz bir index istenirse hata fırlat
+    }
   }
 }

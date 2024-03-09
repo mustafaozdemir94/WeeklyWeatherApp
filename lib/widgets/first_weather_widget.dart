@@ -1,13 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:weatherapp/models/weather_model.dart';
+import 'package:weatherapp/screens/home_page.dart';
 
-class Test extends StatelessWidget {
-  const Test({super.key, required this.weather});
+class FirstWeatherWidget extends StatelessWidget {
   final WeatherModel weather;
+  final String city;
+  final String time;
 
+  const FirstWeatherWidget({super.key, required this.weather, required this.city, required this.time});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,16 +49,35 @@ class Test extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '📍 Manisa',
-                      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w300,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '📍 $city',
+                          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300,
+                              ),
+                        ),
+                        IconButton(
+                          color: const Color.fromARGB(255, 47, 6, 117),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const HomePage(),
+                                ));
+                          },
+                          iconSize: 30,
+                          icon: const Icon(
+                            Icons.refresh_sharp,
                           ),
+                        ),
+                      ],
                     ),
-                    const Text(
-                      "Günaydın",
-                      style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+                    Text(
+                      time,
+                      style: const TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -177,7 +197,7 @@ class Test extends StatelessWidget {
                               style: TextStyle(color: Color(0xFF673AB7), fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              '${double.parse(weather.max).round()}°C',
+                              '${double.parse(weather.min).round()}°C',
                               style: const TextStyle(color: Color(0xFF673AB7), fontWeight: FontWeight.w700),
                             ),
                           ],
@@ -192,8 +212,3 @@ class Test extends StatelessWidget {
         ));
   }
 }
-
-//                     Text(
-//                       "PZRTS",
-//                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.white),
-//                     ),

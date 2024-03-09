@@ -8,6 +8,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   WeatherBloc({required this.weatherRepository}) : super(WeatherInitial()) {
     on<FetchWeather>(_onFetch);
+    on<ResetFetchWeatherEvent>(_onReset);
   }
   void _onFetch(FetchWeather event, Emitter<WeatherState> emit) async {
     emit(WeatherLoading());
@@ -15,5 +16,9 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     final city = await weatherRepository.getLocation();
     final weatherList = await weatherRepository.getWeatherData();
     emit(WeatherLoaded(weathers: weatherList, city: city));
+  }
+
+  void _onReset(ResetFetchWeatherEvent event, Emitter<WeatherState> emit) async {
+    emit(WeatherInitial());
   }
 }
